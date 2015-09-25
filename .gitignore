@@ -1,0 +1,11 @@
+.meteor/local/
+
+.idea/
+
+.DS_Store
+
+*.ico
+
+.npm/
+
+settings.json
