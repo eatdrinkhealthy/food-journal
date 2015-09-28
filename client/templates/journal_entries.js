@@ -3,3 +3,9 @@ Template.journalEntriesList.helpers({
         return JournalEntries.find();
     }
 });
+
+Template.journalEntry.helpers({
+    formatDate: function (date) {
+        return moment(date).format('YYYY-MM-DD');
+    }
+});
