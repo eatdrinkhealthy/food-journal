@@ -21,3 +21,4 @@ twbs:bootstrap
 underscore
 jagi:astronomy
 momentjs:moment
+iron:router

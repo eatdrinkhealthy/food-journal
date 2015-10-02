@@ -1,0 +1,12 @@
+<template name="layout">
+    <div class="container">
+        <header role="navigation" class="navbar navbar-default">
+            <div class="navbar-header">
+                <a href="{{pathFor 'journalEntriesList'}}" class="navbar-brand">Food Journal</a>
+            </div>
+        </header>
+        <div id="main">
+            {{> yield}}
+        </div>
+    </div>
+</template>
