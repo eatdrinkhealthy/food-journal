@@ -2,8 +2,10 @@
     <form class="main form page">
         <div class="form-group">
             <label for="entry-datepicker" class="control-label">Date</label>
+
             <div class="input-group date">
-                <input name="date" value="{{currentValidDate}}" type="text" class="form-control" id="entry-datepicker"/>
+                <input name="date" value="{{currentValidDate}}" type="text"
+                       class="form-control" id="entry-datepicker"/>
                 <span class="input-group-addon">
                     <i class="glyphicon glyphicon-th"></i>
                 </span>
@@ -13,7 +15,8 @@
             <label for="caption" class="control-label">Caption</label>
 
             <div class="controls">
-                <input name="caption" type="text" value="" class="form-control"/>
+                <input name="caption" id="caption" type="text" value=""
+                       class="form-control"/>
             </div>
         </div>
         <input type="submit" value="Submit" class="btn btn-primary"/>
