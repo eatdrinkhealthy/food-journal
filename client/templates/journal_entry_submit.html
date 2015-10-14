@@ -1,6 +1,15 @@
 <template name="journalEntrySubmit">
     <form class="main form page">
         <div class="form-group">
+            <label for="entry-datepicker" class="control-label">Date</label>
+            <div class="input-group date">
+                <input name="date" value="{{currentValidDate}}" type="text" class="form-control" id="entry-datepicker"/>
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-th"></i>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="caption" class="control-label">Caption</label>
 
             <div class="controls">

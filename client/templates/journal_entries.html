@@ -1,4 +1,11 @@
 <template name="journalEntriesList">
+    <h2 class="journal-header">FOOD MOOD JOURNAL</h2>
+    <div>
+        <p class="journal-preface">How you eat is just as important as what you eat. I want you to think of eating
+            as a sacred act that you get to enjoy and look foward to. After you sit down,
+            take several deep breaths. You can actually trick your nervous system into thinking
+            it’s relaxed simply by slowing down and invoking the breath.</p>
+    </div>
     <div class="journal-entries">
         {{#each journalEntries}}
             {{> journalEntry}}
@@ -9,7 +16,7 @@
 <template name="journalEntry">
     <div class="journal-entry">
         <div class="journal-entry-content">
-            <h3><a href="{{pathFor 'journalEntryPage'}}">{{_id}}</a><span>{{caption}}</span></h3>
+            <h3><a href="{{pathFor 'journalEntryPage'}}">{{formattedDate}}</a><span>{{caption}}</span></h3>
         </div>
         <a href="{{pathFor 'journalEntryPage'}}" class="discuss btn btn-default">View</a>
     </div>

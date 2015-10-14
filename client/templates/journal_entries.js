@@ -5,7 +5,7 @@ Template.journalEntriesList.helpers({
 });
 
 Template.journalEntry.helpers({
-    formatDate: function (date) {
-        return moment(date).format('YYYY-MM-DD');
+    formattedDate: function () {
+        return moment(this._id).format('MM-DD-YYYY');
     }
 });
