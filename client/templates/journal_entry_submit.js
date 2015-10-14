@@ -22,5 +22,18 @@ Template.journalEntrySubmit.events({
         // ...so hard coded it.
         e.preventDefault();
         $('#entry-datepicker').datepicker('show');
+    },
+
+    'submit form': function (e) {
+        e.preventDefault();
+
+        var entry = new JournalEntry();
+        entry.set({
+            _id: $('#entry-datepicker').datepicker('getDate'),
+            caption: $(e.target).find('[name=caption]').val()
+        });
+        entry.save();
+
+        Router.go('journalEntryPage', entry);
     }
 });
