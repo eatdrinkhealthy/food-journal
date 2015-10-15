@@ -4,8 +4,8 @@ Template.journalEntriesList.helpers({
     }
 });
 
-Template.journalEntry.helpers({
-    formattedDate: function () {
-        return moment(this._id).format('MM-DD-YYYY');
-    }
-});
+//Template.journalEntry.helpers({
+//    formattedDate: function () {
+//        return moment(this.entryDate).format('MM-DD-YYYY');
+//    }
+//});

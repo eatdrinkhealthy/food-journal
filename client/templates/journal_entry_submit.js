@@ -29,11 +29,11 @@ Template.journalEntrySubmit.events({
 
         var entry = new JournalEntry();
         entry.set({
-            _id: $('#entry-datepicker').datepicker('getDate'),
+            entryDate: $('#entry-datepicker').datepicker('getDate'),
             caption: $(e.target).find('[name=caption]').val()
         });
         entry.save();
 
-        Router.go('journalEntryPage', entry);
+        Router.go('journalEntryPage', {slug: entry.slug});
     }
 });
