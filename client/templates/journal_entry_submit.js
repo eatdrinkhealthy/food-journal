@@ -11,7 +11,7 @@ Template.journalEntrySubmit.rendered = function() {
         autoclose: true,
         container: '#datepicker-container',
         format: 'm/d/yy',
-        datesDisabled: ['10/05/2015']   // TODO: assign existing entry dates
+        datesDisabled: existingEntryDatesList()
     });
 };
 

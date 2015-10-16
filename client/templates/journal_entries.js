@@ -1,6 +1,6 @@
 Template.journalEntriesList.helpers({
     journalEntries: function () {
-        return JournalEntries.find();
+        return JournalEntries.find({}, {sort: {entryDate: -1}});
     }
 });
 
