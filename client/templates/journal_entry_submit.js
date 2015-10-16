@@ -32,8 +32,12 @@ Template.journalEntrySubmit.events({
             entryDate: $('#entry-datepicker').datepicker('getDate'),
             caption: $(e.target).find('[name=caption]').val()
         });
-        entry.save();
 
-        Router.go('journalEntryPage', {slug: entry.slug});
+        Meteor.call('journalEntryInsert', entry, function (error, result) {
+            if (error) {
+                return alert(error.reason);
+            }
+            Router.go('journalEntryPage', {slug: result.slug});
+        });
     }
 });
