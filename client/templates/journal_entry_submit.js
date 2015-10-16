@@ -29,6 +29,7 @@ Template.journalEntrySubmit.events({
 
         var entry = new JournalEntry();
         entry.set({
+            userId: Meteor.user()._id,
             entryDate: $('#entry-datepicker').datepicker('getDate'),
             caption: $(e.target).find('[name=caption]').val()
         });
