@@ -4,8 +4,3 @@ Template.journalEntriesList.helpers({
     }
 });
 
-//Template.journalEntry.helpers({
-//    formattedDate: function () {
-//        return moment(this.entryDate).format('MM-DD-YYYY');
-//    }
-//});
