@@ -38,6 +38,11 @@ Template.journalEntrySubmit.events({
             if (error) {
                 return alert(error.reason);
             }
+
+            if (result.entryAlreadyExists) {
+                alert('A journal entry for this date already exists');
+            }
+
             Router.go('journalEntryPage', {slug: result.slug});
         });
     }
