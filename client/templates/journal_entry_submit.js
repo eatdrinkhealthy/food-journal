@@ -11,7 +11,7 @@ Template.journalEntrySubmit.rendered = function() {
         autoclose: true,
         container: '#datepicker-container',
         format: 'm/d/yy',
-        datesDisabled: existingEntryDatesList()
+        datesDisabled: JournalEntry.existingEntryDatesList()
     });
 };
 
@@ -29,7 +29,7 @@ Template.journalEntrySubmit.events({
 
         var entry = new JournalEntry();
         entry.set({
-            userId: Meteor.user()._id,
+            userId: Meteor.userId(),
             entryDate: $('#entry-datepicker').datepicker('getDate'),
             caption: $(e.target).find('[name=caption]').val()
         });
