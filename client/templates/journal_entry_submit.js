@@ -9,6 +9,7 @@ Template.journalEntrySubmit.helpers({
 Template.journalEntrySubmit.rendered = function() {
     $('#entry-datepicker').datepicker({
         todayBtn: true,
+        todayHighlight: true,
         autoclose: true,
         container: '#datepicker-container',
         format: 'm/d/yy',
