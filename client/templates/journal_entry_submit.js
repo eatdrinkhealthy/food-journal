@@ -1,5 +1,5 @@
 Template.journalEntrySubmit.helpers({
-    newValidDate: function () {
+    suggestedNewDate: function () {
         // if an entry doesn't exist for today's date, pre-fill date field with today's date (else empty)
         return JournalEntries.dateEntryExists(Date.now()) ? '' : moment().format('M/D/YY');
     }
@@ -11,7 +11,7 @@ Template.journalEntrySubmit.rendered = function() {
         autoclose: true,
         container: '#datepicker-container',
         format: 'm/d/yy',
-        datesDisabled: JournalEntry.existingEntryDatesList()
+        datesDisabled: JournalEntries.existingEntryDatesList()
     });
 };
 
