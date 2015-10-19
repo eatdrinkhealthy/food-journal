@@ -1,3 +1,3 @@
 Meteor.publish('journalEntries', function () {
-    return JournalEntries.find({userId: this.userId});
+    return JournalEntries.find({ownerId: this.userId});
 });

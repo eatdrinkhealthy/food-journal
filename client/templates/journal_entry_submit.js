@@ -1,7 +1,8 @@
 Template.journalEntrySubmit.helpers({
     suggestedNewDate: function () {
         // if an entry doesn't exist for today's date, pre-fill date field with today's date (else empty)
-        return JournalEntries.dateEntryExists(Date.now()) ? '' : moment().format('M/D/YY');
+        var today = new Date();
+        return JournalEntries.getUserEntry(today) ? '' : moment().format('M/D/YY');
     }
 });
 
@@ -29,7 +30,8 @@ Template.journalEntrySubmit.events({
 
         var entry = new JournalEntry();
         entry.set({
-            userId: Meteor.userId(),
+            // set all document fields here, except ownerId
+            // set ownerId server side for greater security
             entryDate: $('#entry-datepicker').datepicker('getDate'),
             caption: $(e.target).find('[name=caption]').val()
         });
@@ -43,7 +45,7 @@ Template.journalEntrySubmit.events({
                 alert('A journal entry for this date already exists');
             }
 
-            Router.go('journalEntryPage', {slug: result.slug});
+            Router.go('journalEntryPage', {_id: result._id});
         });
     }
 });
