@@ -37,16 +37,21 @@ Template.journalEntrySubmit.events({
             caption: $(e.target).find('[name=caption]').val()
         });
 
-        Meteor.call('journalEntryInsert', entry, function (error, result) {
-            if (error) {
-                return alert(error.reason);
-            }
+        if (entry.validateAll()) {
+            Meteor.call('journalEntryInsert', entry, function (error, result) {
+                if (error) {
+                    return alert(error.reason);
+                }
 
-            if (result.entryAlreadyExists) {
-                alert('A journal entry for this date already exists');
-            }
+                if (result.entryAlreadyExists) {
+                    alert('A journal entry for this date already exists');
+                }
 
-            Router.go('journalEntryPage', {_id: result._id});
-        });
+                Router.go('journalEntryPage', {_id: result._id});
+            });
+        } else {
+            var errorList = entry.getValidationErrors();
+            alert('form errors:' + JSON.stringify(errorList));
+        }
     }
 });
