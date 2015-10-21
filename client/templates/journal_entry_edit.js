@@ -19,22 +19,21 @@ Template.journalEntryEdit.events({
     'submit form': function(e) {
         e.preventDefault();
 
-        var entry = JournalEntries.findOne(this._id);
+        var currentEntryId = this._id;
+
+        var entry = JournalEntries.findOne(currentEntryId);
         entry.set({
             entryDate: $('#entry-datepicker').datepicker('getDate'),
             caption: $(e.target).find('[name=caption]').val()
         });
 
-        entry.save(function (error, id) {
-            // TODO: id doesn't seem correct here. a '1' was passed back, I think
-            // maybe the number of some items saved. but should have been an id.
-            // So instead, moved the router.go outside of this callback until
-            // I inquire about the id value.
+        entry.save(function (error) {
             if (error) {
                 alert('edit save error:' +  error.reason);
+            } else {
+                Router.go('journalEntryPage', {_id: currentEntryId});
             }
         });
-        Router.go('journalEntryPage', {_id: entry._id});
     },
 
     'click .delete': function (e) {
