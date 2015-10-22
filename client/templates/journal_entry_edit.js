@@ -27,7 +27,7 @@ Template.journalEntry_edit.events({
         //      SIDENOTE: when comparing dates, the '+' prefix operator compares milliseconds
         var newEntryDate = $('#entry-datepicker').datepicker('getDate');
         if (+newEntryDate !== +entry.entryDate && JournalEntries.getUserEntry(newEntryDate)) {
-            alert('An entry for ' + dateDatePickerFormat(newEntryDate) + ' already exists.');
+            throwError('An entry for ' + dateDatePickerFormat(newEntryDate) + ' already exists.');
             return $('#entry-datepicker').datepicker('setDate', entry.entryDate);
         }
 
@@ -39,14 +39,14 @@ Template.journalEntry_edit.events({
         if (entry.validateAll()) {
             entry.save(function (error) {
                 if (error) {
-                    alert('edit save error:' +  error.reason);
+                    throwError('edit save error:' +  error.reason);
                 } else {
                     Router.go('journalEntry_view', {_id: currentEntryId});
                 }
             });
         } else {
             var errorList = entry.getValidationErrors();
-            alert('form errors: ' + JSON.stringify(errorList));
+            throwError('form errors: ' + JSON.stringify(errorList));
         }
     },
 

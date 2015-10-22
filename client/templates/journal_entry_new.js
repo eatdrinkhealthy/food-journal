@@ -43,18 +43,18 @@ Template.journalEntry_new.events({
                     // if there are any validation errors, put those in the entry document/object
                     entry.catchValidationException(error);
 
-                    return alert('error from server: ' + JSON.stringify(error));
+                    return throwError('error from server: ' + JSON.stringify(error));
                 }
 
                 if (result.entryAlreadyExists) {
-                    alert('A journal entry for this date already exists');
+                    throwError('A journal entry for this date already exists');
                 }
 
                 Router.go('journalEntry_view', {_id: result._id});
             });
         } else {
             var errorList = entry.getValidationErrors();
-            alert('form errors:' + JSON.stringify(errorList));
+            thowError('form errors:' + JSON.stringify(errorList));
         }
     }
 });
