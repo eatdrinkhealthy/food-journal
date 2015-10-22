@@ -1,12 +1,8 @@
-Template.journalEntry_new.helpers({
-    suggestedNewDate: function () {
-        // if an entry doesn't exist for today's date, pre-fill date field with today's date (else empty)
-        var today = new Date();
-        return JournalEntries.getUserEntry(today) ? '' : dateDatePickerFormat(today);
-    }
+Template.journalEntry_create.onCreated(function () {
+    Session.set('journalEntryCreateErrors', {});
 });
 
-Template.journalEntry_new.rendered = function() {
+Template.journalEntry_create.rendered = function() {
     $('#entry-datepicker').datepicker({
         todayBtn: true,
         todayHighlight: true,
@@ -17,7 +13,23 @@ Template.journalEntry_new.rendered = function() {
     });
 };
 
-Template.journalEntry_new.events({
+Template.journalEntry_create.helpers({
+    suggestedNewDate: function () {
+        // if an entry doesn't exist for today's date, pre-fill date field with today's date (else empty)
+        var today = new Date();
+        return JournalEntries.getUserEntry(today) ? '' : dateDatePickerFormat(today);
+    },
+
+    errorClass: function (field) {
+        return !!Session.get('journalEntryCreateErrors')[field] ? 'has-error' : '';
+    },
+
+    errorMessage: function (field) {
+        return Session.get('journalEntryCreateErrors')[field];
+    }
+});
+
+Template.journalEntry_create.events({
     'click .glyphicon': function(e) {
         // NOTE, (per the docs) this functionality should work simply by adding
         // input-group-addon class to the span around the glyph, but wasn't working
@@ -53,8 +65,7 @@ Template.journalEntry_new.events({
                 Router.go('journalEntry_view', {_id: result._id});
             });
         } else {
-            var errorList = entry.getValidationErrors();
-            thowError('form errors:' + JSON.stringify(errorList));
+            return Session.set('journalEntryCreateErrors', entry.getValidationErrors());
         }
     }
 });
