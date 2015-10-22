@@ -1,0 +1,9 @@
+<template name="journalEntry_item">
+    <div class="journal-entry">
+        <div class="journal-entry-content">
+            <h3><a href="{{pathFor 'journalEntry_view'}}">{{formattedDate}}</a><span>{{caption}}</span></h3>
+            <a href="{{pathFor 'journalEntry_edit'}}">Edit</a>
+        </div>
+        <a href="{{pathFor 'journalEntry_view'}}" class="discuss btn btn-default">View</a>
+    </div>
+</template>

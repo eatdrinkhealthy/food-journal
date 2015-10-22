@@ -1,10 +1,10 @@
-Template.journalEntryEdit.helpers({
+Template.journalEntry_edit.helpers({
     formattedDate: function () {
         return moment(this.entryDate).format('M/D/YY');
     }
 });
 
-Template.journalEntryEdit.rendered = function() {
+Template.journalEntry_edit.rendered = function() {
     $('#entry-datepicker').datepicker({
         todayBtn: true,
         todayHighlight: true,
@@ -15,7 +15,7 @@ Template.journalEntryEdit.rendered = function() {
     });
 };
 
-Template.journalEntryEdit.events({
+Template.journalEntry_edit.events({
     'submit form': function(e) {
         e.preventDefault();
 
@@ -31,7 +31,7 @@ Template.journalEntryEdit.events({
             if (error) {
                 alert('edit save error:' +  error.reason);
             } else {
-                Router.go('journalEntryPage', {_id: currentEntryId});
+                Router.go('journalEntry_view', {_id: currentEntryId});
             }
         });
     },
@@ -42,7 +42,7 @@ Template.journalEntryEdit.events({
         if (confirm("Delete this journal entry?")) {
             var entry = JournalEntries.findOne(this._id);
             entry.remove();
-            Router.go('journalEntriesList');
+            Router.go('journalEntry_list');
         }
     }
 });

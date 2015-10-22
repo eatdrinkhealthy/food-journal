@@ -1,4 +1,4 @@
-Template.journalEntrySubmit.helpers({
+Template.journalEntry_new.helpers({
     suggestedNewDate: function () {
         // if an entry doesn't exist for today's date, pre-fill date field with today's date (else empty)
         var today = new Date();
@@ -6,7 +6,7 @@ Template.journalEntrySubmit.helpers({
     }
 });
 
-Template.journalEntrySubmit.rendered = function() {
+Template.journalEntry_new.rendered = function() {
     $('#entry-datepicker').datepicker({
         todayBtn: true,
         todayHighlight: true,
@@ -17,7 +17,7 @@ Template.journalEntrySubmit.rendered = function() {
     });
 };
 
-Template.journalEntrySubmit.events({
+Template.journalEntry_new.events({
     'click .glyphicon': function(e) {
         // NOTE, (per the docs) this functionality should work simply by adding
         // input-group-addon class to the span around the glyph, but wasn't working
@@ -47,7 +47,7 @@ Template.journalEntrySubmit.events({
                     alert('A journal entry for this date already exists');
                 }
 
-                Router.go('journalEntryPage', {_id: result._id});
+                Router.go('journalEntry_view', {_id: result._id});
             });
         } else {
             var errorList = entry.getValidationErrors();
