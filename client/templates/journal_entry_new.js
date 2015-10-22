@@ -2,7 +2,7 @@ Template.journalEntry_new.helpers({
     suggestedNewDate: function () {
         // if an entry doesn't exist for today's date, pre-fill date field with today's date (else empty)
         var today = new Date();
-        return JournalEntries.getUserEntry(today) ? '' : moment().format('M/D/YY');
+        return JournalEntries.getUserEntry(today) ? '' : dateDatePickerFormat(today);
     }
 });
 
@@ -40,7 +40,10 @@ Template.journalEntry_new.events({
         if (entry.validateAll()) {
             Meteor.call('journalEntryInsert', entry, function (error, result) {
                 if (error) {
-                    return alert(error.reason);
+                    // if there are any validation errors, put those in the entry document/object
+                    entry.catchValidationException(error);
+
+                    return alert('error from server: ' + JSON.stringify(error));
                 }
 
                 if (result.entryAlreadyExists) {

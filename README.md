@@ -23,3 +23,8 @@ A simple journal application for practice with Meteor and Astronomy (a Meteor/Mo
     *         // around entry.save()   -in either case, you are catching the exception, and able to
     *         // return a customized error back to the client; the only difference 'may' be that
     *         // the mongo insert is not blocked
+- TBD, potential suggestion for jagi:astronomy
+    * when doing validation of all fields, the error.reason is an object (representing a list of errors)
+    * what is the convention of the error object (from a thrown execption)? Is the reason supposed to be a string?
+       * if so, astro should probably use a concatenated string for reason instead of an object and provide the validation error list/object via a property or method (so dislplaying error.reason will display correctly)   in this case alert(error.reason) displayed [object Object]
+- 

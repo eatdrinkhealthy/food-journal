@@ -1,6 +1,6 @@
 Template.journalEntry_edit.helpers({
     formattedDate: function () {
-        return moment(this.entryDate).format('M/D/YY');
+        return dateDatePickerFormat(this.entryDate);
     }
 });
 
@@ -22,18 +22,32 @@ Template.journalEntry_edit.events({
         var currentEntryId = this._id;
 
         var entry = JournalEntries.findOne(currentEntryId);
+
+        // Prevent the user from changing the entry date to another existing entry date
+        //      SIDENOTE: when comparing dates, the '+' prefix operator compares milliseconds
+        var newEntryDate = $('#entry-datepicker').datepicker('getDate');
+        if (+newEntryDate !== +entry.entryDate && JournalEntries.getUserEntry(newEntryDate)) {
+            alert('An entry for ' + dateDatePickerFormat(newEntryDate) + ' already exists.');
+            return $('#entry-datepicker').datepicker('setDate', entry.entryDate);
+        }
+
         entry.set({
-            entryDate: $('#entry-datepicker').datepicker('getDate'),
+            entryDate: newEntryDate,
             caption: $(e.target).find('[name=caption]').val()
         });
 
-        entry.save(function (error) {
-            if (error) {
-                alert('edit save error:' +  error.reason);
-            } else {
-                Router.go('journalEntry_view', {_id: currentEntryId});
-            }
-        });
+        if (entry.validateAll()) {
+            entry.save(function (error) {
+                if (error) {
+                    alert('edit save error:' +  error.reason);
+                } else {
+                    Router.go('journalEntry_view', {_id: currentEntryId});
+                }
+            });
+        } else {
+            var errorList = entry.getValidationErrors();
+            alert('form errors: ' + JSON.stringify(errorList));
+        }
     },
 
     'click .delete': function (e) {
