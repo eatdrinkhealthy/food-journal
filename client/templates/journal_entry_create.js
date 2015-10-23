@@ -3,7 +3,7 @@ Template.journalEntry_create.onCreated(function () {
 });
 
 Template.journalEntry_create.rendered = function() {
-    $('#entry-datepicker').datepicker({
+    $('#entry-create-datepicker').datepicker({
         todayBtn: true,
         todayHighlight: true,
         autoclose: true,
@@ -35,7 +35,7 @@ Template.journalEntry_create.events({
         // input-group-addon class to the span around the glyph, but wasn't working
         // ...so hard coded it.
         e.preventDefault();
-        $('#entry-datepicker').datepicker('show');
+        $('#entry-create-datepicker').datepicker('show');
     },
 
     'submit form': function (e) {
@@ -45,7 +45,7 @@ Template.journalEntry_create.events({
         entry.set({
             // set all document fields here, except ownerId
             // set ownerId server side for greater security
-            entryDate: $('#entry-datepicker').datepicker('getDate'),
+            entryDate: $('#entry-create-datepicker').datepicker('getDate'),
             caption: $(e.target).find('[name=caption]').val()
         });
 

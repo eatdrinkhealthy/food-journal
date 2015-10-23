@@ -1,11 +1,11 @@
 <template name="journalEntry_create">
     <form class="main form page">
         <div class="form-group {{errorClass 'entryDate'}}">
-            <label for="entry-datepicker" class="control-label">Date</label>
+            <label for="entry-create-datepicker" class="control-label">Date</label>
 
             <div class="input-group date" id="datepicker-container">
                 <input name="date" value="{{suggestedNewDate}}" type="text"
-                       class="form-control" id="entry-datepicker"/>
+                       class="form-control" id="entry-create-datepicker"/>
                 <span class="input-group-addon">
                     <i class="glyphicon glyphicon-th"></i>
                 </span>

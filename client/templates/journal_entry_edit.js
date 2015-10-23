@@ -1,11 +1,9 @@
-Template.journalEntry_edit.helpers({
-    formattedDate: function () {
-        return dateDatePickerFormat(this.entryDate);
-    }
+Template.journalEntry_edit.onCreated(function () {
+    Session.set('journalEntryEditErrors', {});
 });
 
 Template.journalEntry_edit.rendered = function() {
-    $('#entry-datepicker').datepicker({
+    $('#entry-edit-datepicker').datepicker({
         todayBtn: true,
         todayHighlight: true,
         autoclose: true,
@@ -14,6 +12,20 @@ Template.journalEntry_edit.rendered = function() {
         datesDisabled: JournalEntries.existingEntryDatesList()
     });
 };
+
+Template.journalEntry_edit.helpers({
+    formattedDate: function () {
+        return dateDatePickerFormat(this.entryDate);
+    },
+
+    errorClass: function (field) {
+        return !!Session.get('journalEntryEditErrors')[field] ? 'has-error' : '';
+    },
+
+    errorMessage: function (field) {
+        return Session.get('journalEntryEditErrors')[field];
+    }
+});
 
 Template.journalEntry_edit.events({
     'submit form': function(e) {
@@ -25,10 +37,10 @@ Template.journalEntry_edit.events({
 
         // Prevent the user from changing the entry date to another existing entry date
         //      SIDENOTE: when comparing dates, the '+' prefix operator compares milliseconds
-        var newEntryDate = $('#entry-datepicker').datepicker('getDate');
+        var newEntryDate = $('#entry-edit-datepicker').datepicker('getDate');
         if (+newEntryDate !== +entry.entryDate && JournalEntries.getUserEntry(newEntryDate)) {
             throwError('An entry for ' + dateDatePickerFormat(newEntryDate) + ' already exists.');
-            return $('#entry-datepicker').datepicker('setDate', entry.entryDate);
+            return $('#entry-edit-datepicker').datepicker('setDate', entry.entryDate);
         }
 
         entry.set({
@@ -45,8 +57,7 @@ Template.journalEntry_edit.events({
                 }
             });
         } else {
-            var errorList = entry.getValidationErrors();
-            throwError('form errors: ' + JSON.stringify(errorList));
+            Session.set('journalEntryEditErrors', entry.getValidationErrors());
         }
     },
 
