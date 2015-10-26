@@ -50,6 +50,17 @@ if (JournalEntries.find().count() === 0) {
     });
     je5.save();
 
+    for (var i=1; i <= 10; i++) {
+        var je = new JournalEntry();
+        je.set({
+            ownerId: smarshUserId,
+            entryDate: new Date(2015, 6, i),
+            caption: 'day ' + i + ' on the diet.'
+        });
+        je.save();
+
+    }
+
     var je6 = new JournalEntry();
     je6.set({
         ownerId: joeUserId,
