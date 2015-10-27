@@ -1,5 +1,6 @@
 Meteor.methods({
     journalEntryInsert: function (entry) {
+        check(this.userId, String); // make sure a user is logged in
         check(entry, JournalEntry);
 
         // Verify an entry for this user and date do not already exist
@@ -11,7 +12,7 @@ Meteor.methods({
             }
         }
 
-        entry.set('ownerId', Meteor.userId());  // set document owner to current logged in user
+        entry.set('ownerId', this.userId);  // set document owner to current logged in user
 
         if (!entry.validateAll()) {
             // Send validation errors back to client
