@@ -25,6 +25,10 @@ if (JournalEntries.find().count() === 0) {
         'caption': 'not a very good day.'
     });
     je2.set({
+        'sleep.hours': 6,
+        'sleep.quality': JournalEntries.sleepQualityList[3]
+    });
+    je2.set({
         'breakfast.food': 'bacon, eggs',
         'breakfast.time': new Date(2015, 8, 21, 7, 30),
         'breakfast.satisfying': true,
@@ -41,6 +45,10 @@ if (JournalEntries.find().count() === 0) {
         'ownerId': smarshUserId,
         'entryDate': new Date(2015, 8, 22),
         'caption': 'getting started again.'
+    });
+    je3.set({
+        'sleep.hours': 7,
+        'sleep.quality': JournalEntries.sleepQualityList[0]
     });
     je3.save();
 
