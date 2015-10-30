@@ -4,7 +4,7 @@ Meteor.methods({
         check(entry, JournalEntry);
 
         // Verify an entry for this user and date do not already exist
-        var userDateEntry = JournalEntries.getUserEntry(entry.entryDate);
+        var userDateEntry = JournalEntries.getCurrentUserEntry(entry.entryDate);
         if (userDateEntry) {
             return {
                 entryAlreadyExists: true,

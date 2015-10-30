@@ -17,7 +17,19 @@ Template.journalEntry_create.helpers({
     suggestedNewDate: function () {
         // if an entry doesn't exist for today's date, pre-fill date field with today's date (else empty)
         var today = new Date();
-        return JournalEntries.getUserEntry(today) ? '' : dateDatePickerFormat(today);
+        var entryFound = JournalEntries.getCurrentUserEntry(today);
+
+        var retDate;
+        if (entryFound) {
+            retDate = '';
+        } else {
+            retDate = dateDatePickerFormat(today);
+        }
+
+        return retDate;
+        // TODO: DEFECT, suggestednewdate is getting called more than once when showing this template. on the subsequent
+        // call it returns a date, which shouldn't. once you fix this, can re-optimize the if statement in to a
+        // tertiary.
     },
 
     errorClass: function (field) {
