@@ -76,7 +76,6 @@ if (JournalEntries.find().count() === 0) {
             'caption': 'day ' + i + ' on the diet.'
         });
         je.save();
-
     }
 
     var je6 = new JournalEntry();
