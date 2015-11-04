@@ -17,7 +17,7 @@ Template.journalEntry_create.helpers({
     suggestedNewDate: function () {
         // if an entry doesn't exist for today's date, pre-fill date field with today's date (else empty)
         var today = new Date();
-        var entryFound = JournalEntries.getCurrentUserEntry(today);
+        var entryFound = JournalEntries.userJournalEntryExists(today);
 
         var retDate;
         if (entryFound) {
