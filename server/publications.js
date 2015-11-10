@@ -11,11 +11,8 @@ Meteor.publish('singleJournalEntry', function (id) {
     return JournalEntries.find(id);
 });
 
-Meteor.publish('userJournalEntryDate', function (entryDate) {
-    check(entryDate, Date);
+Meteor.publish('userEntryDateList', function () {
+    check(this.userId, String);
 
-    // strip off time, check only m d y
-    var mdyDate = new Date(entryDate.getFullYear(), entryDate.getMonth(), entryDate.getDate());
-
-    return JournalEntries.find({ownerId: this.userId, entryDate: mdyDate});
+    return JournalEntries.find({ownerId: this.userId}, {fields: {entryDate: 1}});
 });

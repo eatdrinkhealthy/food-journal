@@ -27,4 +27,8 @@ A simple journal application for practice with Meteor and Astronomy (a Meteor/Mo
     * when doing validation of all fields, the error.reason is an object (representing a list of errors)
     * what is the convention of the error object (from a thrown execption)? Is the reason supposed to be a string?
        * if so, astro should probably use a concatenated string for reason instead of an object and provide the validation error list/object via a property or method (so dislplaying error.reason will display correctly)   in this case alert(error.reason) displayed [object Object]
-- 
+- Asking the server (collection)
+    * I wanted to ask the server if an entry (of a date) for a user existed, so I could check when editing or creating an entry, to make sure a duplicate wasn't entered.
+    * was very difficult to do, wasn't a simple way to do so via server method (ran in to asnyc issues)
+    * ended up having to publish/subscribe to the whole collection
+    * What is the best way to do this? (see TODO in create / edit entry code)
