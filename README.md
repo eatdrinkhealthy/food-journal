@@ -32,3 +32,4 @@ A simple journal application for practice with Meteor and Astronomy (a Meteor/Mo
     * was very difficult to do, wasn't a simple way to do so via server method (ran in to asnyc issues)
     * ended up having to publish/subscribe to the whole collection
     * What is the best way to do this? (see TODO in create / edit entry code)
+    * Meteor.call(), without providing a callbac, SHOULD be synchronous. When trying that, I get an undefined result.
