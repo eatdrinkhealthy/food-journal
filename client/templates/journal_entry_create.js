@@ -47,7 +47,8 @@ Template.journalEntry_create.events({
             // set all document fields here, except ownerId
             // set ownerId server side for greater security
             entryDate: $('#entry-create-datepicker').datepicker('getDate'),
-            caption: $(e.target).find('[name=caption]').val()
+            caption: $(e.target).find('[name=caption]').val(),
+            'sleep.hours': $(e.target).find('[name=sleep-hours]').val()
         });
 
         if (entry.validateAll()) {
