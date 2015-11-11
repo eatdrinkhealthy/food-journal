@@ -37,6 +37,7 @@ Template.journalEntry_edit.events({
 
         // Prevent the user from changing the entry date to another existing entry date
         //      SIDENOTE: when comparing dates, the '+' prefix operator compares milliseconds
+        // TODO: move this date check to astronomy validation
         var newEntryDate = $('#entry-edit-datepicker').datepicker('getDate');
         if (+newEntryDate !== +entry.entryDate && JournalEntries.userJournalEntryExists(newEntryDate)) {
             throwError('An entry for ' + dateDatePickerFormat(newEntryDate) + ' already exists.');
