@@ -28,6 +28,14 @@ Template.journalEntry_edit.helpers({
 });
 
 Template.journalEntry_edit.events({
+    'click .glyphicon': function(e) {
+        // NOTE, (per the docs) this functionality should work simply by adding
+        // input-group-addon class to the span around the glyph, but wasn't working
+        // ...so hard coded it.
+        e.preventDefault();
+        $('#entry-edit-datepicker').datepicker('show');
+    },
+
     'submit form': function(e) {
         e.preventDefault();
 
