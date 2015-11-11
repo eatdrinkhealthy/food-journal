@@ -54,7 +54,8 @@ Template.journalEntry_edit.events({
 
         entry.set({
             entryDate: newEntryDate,
-            caption: $(e.target).find('[name=caption]').val()
+            caption: $(e.target).find('[name=caption]').val(),
+            'sleep.hours': $(e.target).find('[name=sleep-hours]').val()
         });
 
         if (entry.validateAll()) {
