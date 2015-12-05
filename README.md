@@ -2,6 +2,10 @@
 
 A simple journal application for practice with Meteor and Astronomy (a Meteor/MongoDB model layer).
 
+### commit status:
+- working on edit. create works. but edit isn't selecting the saved sleep.quality value.
+- getting an exception in helper selected
+
 ## Technical Anamolies seen (do further research / testing)
 - slug, methodName wasn't firing. had to sort of hard wire this by adding a beforeSave event and calling generateSlug()
     * see code / comments in models/journal_entries.js

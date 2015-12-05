@@ -27,6 +27,10 @@ Template.journalEntry_create.helpers({
 
     errorMessage: function (field) {
         return Session.get('journalEntryCreateErrors')[field];
+    },
+
+    sleepQuality: function () {
+        return JournalEntries.sleepQualityList;
     }
 });
 
@@ -43,12 +47,21 @@ Template.journalEntry_create.events({
         e.preventDefault();
 
         var entry = new JournalEntry();
+
+
+        // set all document fields here, except ownerId
+        // set ownerId server side for greater security
+
+        // set required fields
         entry.set({
-            // set all document fields here, except ownerId
-            // set ownerId server side for greater security
             entryDate: $('#entry-create-datepicker').datepicker('getDate'),
-            caption: $(e.target).find('[name=caption]').val(),
-            'sleep.hours': $(e.target).find('[name=sleep-hours]').val()
+            caption: $(e.target).find('[name=caption]').val()
+        });
+
+        // set optional fields   (those with no user entered value, get null)
+        entry.set({
+            'sleep.hours': $(e.target).find('[name=sleep-hours]').val() || null,
+            'sleep.quality': $(e.target).find('[name=sleep-quality]').val() || null
         });
 
         if (entry.validateAll()) {

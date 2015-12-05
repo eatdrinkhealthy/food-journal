@@ -23,7 +23,7 @@
         </div>
 
         <div class="panel-heading">
-            <h3 class="panel-title">Sleep</h3>
+            <h3 class="panel-title">Last Night's Sleep</h3>
             <div class="panel-body">
                 <div class="form-group {{errorClass 'sleep.hours'}}">
                     <label for="sleep-hours" class="control-label">Hours</label>
@@ -32,6 +32,19 @@
                         <input type="number" name="sleep-hours" id="sleep-hours" value=""
                                class="form-control" min="0" max="72" step="1"/>
                         <span class="help-block">{{errorMessage 'sleep.hours'}}</span>
+                    </div>
+                </div>
+                <div class="form-group {{errorClass 'sleep.quality'}}">
+                    <label for="sleep-quality" class="control-label">Quality</label>
+
+                    <div class="controls">
+                        <select name="sleep-quality" id="sleep-quality" class="form-control">
+                            <option value=""></option>
+                            {{#each sleepQuality}}
+                                <option value="{{this}}">{{this}}</option>
+                            {{/each}}
+                        </select>
+                        <span class="help-block">{{errorMessage 'sleep.quality'}}</span>
                     </div>
                 </div>
             </div>

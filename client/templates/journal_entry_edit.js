@@ -24,6 +24,15 @@ Template.journalEntry_edit.helpers({
 
     errorMessage: function (field) {
         return Session.get('journalEntryEditErrors')[field];
+    },
+
+    sleepQuality: function () {
+        return JournalEntries.sleepQualityList;
+    },
+
+    selected: function (selectItem) {
+        var sleepQuality = this.sleep.quality || '';
+        return selectItem === sleepQuality ? 'selected' : '';
     }
 });
 
@@ -52,10 +61,16 @@ Template.journalEntry_edit.events({
             return $('#entry-edit-datepicker').datepicker('setDate', entry.entryDate);
         }
 
+        // set required fields
         entry.set({
             entryDate: newEntryDate,
-            caption: $(e.target).find('[name=caption]').val(),
-            'sleep.hours': $(e.target).find('[name=sleep-hours]').val()
+            caption: $(e.target).find('[name=caption]').val()
+        });
+
+        // set optional fields   (those with no user entered value, get null)
+        entry.set({
+            'sleep.hours': $(e.target).find('[name=sleep-hours]').val() || null,
+            'sleep.quality': $(e.target).find('[name=sleep-quality]').val() || null
         });
 
         if (entry.validateAll()) {
