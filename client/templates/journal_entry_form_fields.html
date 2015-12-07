@@ -1,0 +1,51 @@
+<template name="journalEntryFormFields">
+    <div class="form-group {{errorClass 'entryDate'}}">
+        <label for="entry-datepicker" class="control-label">Date</label>
+
+        <div class="input-group date" id="datepicker-container">
+            <input name="date" value="{{suggestedNewDate}}" type="text"
+                   class="form-control" id="entry-datepicker"/>
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-th"></i>
+                </span>
+        </div>
+        <span class="help-block">{{errorMessage 'entryDate'}}</span>
+    </div>
+    <div class="form-group {{errorClass 'caption'}}">
+        <label for="caption" class="control-label">Caption</label>
+
+        <div class="controls">
+            <input name="caption" id="caption" type="text" value=""
+                   class="form-control"/>
+            <span class="help-block">{{errorMessage 'caption'}}</span>
+        </div>
+    </div>
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Last Night's Sleep</h3>
+        <div class="panel-body">
+            <div class="form-group {{errorClass 'sleep.hours'}}">
+                <label for="sleep-hours" class="control-label">Hours</label>
+
+                <div class="controls">
+                    <input type="number" name="sleep-hours" id="sleep-hours" value=""
+                           class="form-control" min="0" max="72" step="0.25"/>
+                    <span class="help-block">{{errorMessage 'sleep.hours'}}</span>
+                </div>
+            </div>
+            <div class="form-group {{errorClass 'sleep.quality'}}">
+                <label for="sleep-quality" class="control-label">Quality</label>
+
+                <div class="controls">
+                    <select name="sleep-quality" id="sleep-quality" class="form-control">
+                        <option value=""></option>
+                        {{#each sleepQuality}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                    <span class="help-block">{{errorMessage 'sleep.quality'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

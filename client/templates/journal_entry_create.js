@@ -1,46 +1,10 @@
-Template.journalEntry_create.onCreated(function () {
-    Session.set('journalEntryCreateErrors', {});
-});
-
-Template.journalEntry_create.rendered = function() {
-    $('#entry-create-datepicker').datepicker({
-        todayBtn: true,
-        todayHighlight: true,
-        autoclose: true,
-        container: '#datepicker-container',
-        format: 'm/d/yy',
-        datesDisabled: JournalEntries.existingEntryDatesList()
-    });
-};
-
-Template.journalEntry_create.helpers({
-    suggestedNewDate: function () {
-        // if an entry doesn't exist for today's date, pre-fill date field with today's date (else empty)
-        var today = new Date();
-
-        return JournalEntries.userJournalEntryExists(today) ? '' : dateDatePickerFormat(today);
-    },
-
-    errorClass: function (field) {
-        return !!Session.get('journalEntryCreateErrors')[field] ? 'has-error' : '';
-    },
-
-    errorMessage: function (field) {
-        return Session.get('journalEntryCreateErrors')[field];
-    },
-
-    sleepQuality: function () {
-        return JournalEntries.sleepQualityList;
-    }
-});
-
 Template.journalEntry_create.events({
     'click .glyphicon': function(e) {
         // NOTE, (per the docs) this functionality should work simply by adding
         // input-group-addon class to the span around the glyph, but wasn't working
         // ...so hard coded it.
         e.preventDefault();
-        $('#entry-create-datepicker').datepicker('show');
+        $('#entry-datepicker').datepicker('show');
     },
 
     'submit form': function (e) {
@@ -54,7 +18,7 @@ Template.journalEntry_create.events({
 
         // set required fields
         entry.set({
-            entryDate: $('#entry-create-datepicker').datepicker('getDate'),
+            entryDate: $('#entry-datepicker').datepicker('getDate'),
             caption: $(e.target).find('[name=caption]').val()
         });
 
@@ -80,7 +44,7 @@ Template.journalEntry_create.events({
                 Router.go('journalEntry_view', {_id: result._id});
             });
         } else {
-            return Session.set('journalEntryCreateErrors', entry.getValidationErrors());
+            return Session.set('journalEntryFormFieldErrors', entry.getValidationErrors());
         }
     }
 });
