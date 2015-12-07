@@ -31,7 +31,9 @@ Template.journalEntry_edit.helpers({
     },
 
     selected: function (selectItem) {
-        var sleepQuality = this.sleep.quality || '';
+        // if sleep.quality is not set (null), set to an empty string for comparing with DOM element value.
+        var sleepQuality = Template.instance().data.sleep.quality || '';
+
         return selectItem === sleepQuality ? 'selected' : '';
     }
 });
