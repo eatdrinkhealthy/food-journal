@@ -60,3 +60,12 @@ Template.journalEntryFormFields.helpers({
     }
 });
 
+Template.journalEntryFormFields.events({
+    'click .glyphicon': function (e) {
+        // NOTE, (per the docs) this functionality should work simply by adding
+        // input-group-addon class to the span around the glyph, but wasn't working
+        // ...so hard coded it.
+        e.preventDefault();
+        $('#entry-datepicker').datepicker('show');
+    }
+});
