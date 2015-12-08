@@ -17,7 +17,8 @@ Template.journalEntry_create.events({
         // set optional fields   (those with no user entered value, get null)
         entry.set({
             'sleep.hours': $(e.target).find('[name=sleep-hours]').val() || null,
-            'sleep.quality': $(e.target).find('[name=sleep-quality]').val() || null
+            'sleep.quality': $(e.target).find('[name=sleep-quality]').val() || null,
+            'breakfast.food': $(e.target).find('[name=breakfast-food]').val() || null
         });
 
         if (entry.validateAll()) {
