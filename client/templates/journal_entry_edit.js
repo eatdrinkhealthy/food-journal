@@ -44,7 +44,7 @@ Template.journalEntry_edit.events({
                 }
             });
         } else {
-            Session.set('journalEntryEditErrors', entry.getValidationErrors());
+            Session.set('journalEntryFormFieldErrors', entry.getValidationErrors());
         }
     },
 
