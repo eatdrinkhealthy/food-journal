@@ -2,13 +2,19 @@
 
 A simple journal application for practice with Meteor and Astronomy (a Meteor/MongoDB model layer).
 
-### commit status:
-- ...
+### commit status (notes for an 'in progress' commit):
+- got shared form fields 'working', but validation error checking isn't working for edit
 
-## Technical Anamolies seen (do further research / testing)
+## Astronomy Technical Anamolies seen (do further research / testing)
 - slug, methodName wasn't firing. had to sort of hard wire this by adding a beforeSave event and calling generateSlug()
     * see code / comments in models/journal_entries.js
     * note, slug code was removed (wasn't being used after adding other functionality)
+- TBD, potential suggestion for jagi:astronomy
+    * when doing validation of all fields, the error.reason is an object (representing a list of errors)
+    * what is the convention of the error object (from a thrown execption)? Is the reason supposed to be a string?
+       * if so, astro should probably use a concatenated string for reason instead of an object and provide the validation error list/object via a property or method (so dislplaying error.reason will display correctly)   in this case alert(error.reason) displayed [object Object]
+
+## Tech Notes
 - audit-argument-checks
     * added the audit-argument-checks package, and tested adding an entry without doing checks. An exception was thrown, but the insert still succeeded.
 - a lesson in throwing errors & catching exceptions (server & client side)
@@ -26,13 +32,10 @@ A simple journal application for practice with Meteor and Astronomy (a Meteor/Mo
     *         // around entry.save()   -in either case, you are catching the exception, and able to
     *         // return a customized error back to the client; the only difference 'may' be that
     *         // the mongo insert is not blocked
-- TBD, potential suggestion for jagi:astronomy
-    * when doing validation of all fields, the error.reason is an object (representing a list of errors)
-    * what is the convention of the error object (from a thrown execption)? Is the reason supposed to be a string?
-       * if so, astro should probably use a concatenated string for reason instead of an object and provide the validation error list/object via a property or method (so dislplaying error.reason will display correctly)   in this case alert(error.reason) displayed [object Object]
 - Asking the server (collection)
     * I wanted to ask the server if an entry (of a date) for a user existed, so I could check when editing or creating an entry, to make sure a duplicate wasn't entered.
     * was very difficult to do, wasn't a simple way to do so via server method (ran in to asnyc issues)
     * ended up having to publish/subscribe to the whole collection
     * What is the best way to do this? (see TODO in create / edit entry code)
     * Meteor.call(), without providing a callbac, SHOULD be synchronous. When trying that, I get an undefined result.
+- Moved common from fields for create and edit entry to a reusable template. The submit button for the form however is still in each edit and create form. Testing showed this to work, but may be a bad practice. smell?

@@ -14,11 +14,24 @@ Template.journalEntryFormFields.rendered = function() {
 };
 
 Template.journalEntryFormFields.helpers({
-    suggestedNewDate: function () {
-        // if an entry doesn't exist for today's date, pre-fill date field with today's date (else empty)
-        var today = new Date();
+    //formattedDate: function () {
+    //    return dateDatePickerFormat(this.entryDate);
+    //},
+    formattedDate: function () {
+        var dateStr;
 
-        return JournalEntries.userJournalEntryExists(today) ? '' : dateDatePickerFormat(today);
+        // if editing an existing entry with date, return formatted date
+        if (this.entryDate) {
+            dateStr = dateDatePickerFormat(this.entryDate);
+        } else {
+            // if a new, and an entry doesn't exist for today's date,
+            // pre-fill date field with today's date (else empty)
+            var today = new Date();
+
+            dateStr = JournalEntries.userJournalEntryExists(today) ? '' : dateDatePickerFormat(today);
+        }
+
+        return dateStr;
     },
 
     errorClass: function (field) {
@@ -31,6 +44,19 @@ Template.journalEntryFormFields.helpers({
 
     sleepQuality: function () {
         return JournalEntries.sleepQualityList;
+    },
+
+    selected: function (selectItem) {
+        var data = Template.instance().data;
+        var entrySleepQuality = '';
+
+        // if editing, get sleep.quality if it's set
+        // if creating or edit value was not set, stick with default empty string
+        if (data.sleep !== undefined && data.sleep.quality) {
+            entrySleepQuality = data.sleep.quality;
+        }
+
+        return selectItem === entrySleepQuality ? 'selected' : '';
     }
 });
 

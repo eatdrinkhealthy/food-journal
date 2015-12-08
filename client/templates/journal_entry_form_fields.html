@@ -3,7 +3,7 @@
         <label for="entry-datepicker" class="control-label">Date</label>
 
         <div class="input-group date" id="datepicker-container">
-            <input name="date" value="{{suggestedNewDate}}" type="text"
+            <input name="date" value="{{formattedDate}}" type="text"
                    class="form-control" id="entry-datepicker"/>
                 <span class="input-group-addon">
                     <i class="glyphicon glyphicon-th"></i>
@@ -15,7 +15,7 @@
         <label for="caption" class="control-label">Caption</label>
 
         <div class="controls">
-            <input name="caption" id="caption" type="text" value=""
+            <input name="caption" id="caption" type="text" value="{{caption}}"
                    class="form-control"/>
             <span class="help-block">{{errorMessage 'caption'}}</span>
         </div>
@@ -28,7 +28,7 @@
                 <label for="sleep-hours" class="control-label">Hours</label>
 
                 <div class="controls">
-                    <input type="number" name="sleep-hours" id="sleep-hours" value=""
+                    <input type="number" name="sleep-hours" id="sleep-hours" value="{{sleep.hours}}"
                            class="form-control" min="0" max="72" step="0.25"/>
                     <span class="help-block">{{errorMessage 'sleep.hours'}}</span>
                 </div>
@@ -38,9 +38,9 @@
 
                 <div class="controls">
                     <select name="sleep-quality" id="sleep-quality" class="form-control">
-                        <option value=""></option>
+                        <option {{selected ''}} value=""></option>
                         {{#each sleepQuality}}
-                            <option value="{{this}}">{{this}}</option>
+                            <option {{selected this}} value="{{this}}">{{this}}</option>
                         {{/each}}
                     </select>
                     <span class="help-block">{{errorMessage 'sleep.quality'}}</span>
