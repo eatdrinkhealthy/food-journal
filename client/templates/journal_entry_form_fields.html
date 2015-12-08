@@ -1,5 +1,5 @@
 <template name="journalEntryFormFields">
-    <div class="form-group {{errorClass 'entryDate'}}">
+    <div class="form-group {{errorClass 'entryDate'}} col-sm-4 col-sm-offset-8">
         <label for="entry-datepicker" class="control-label">Date</label>
 
         <div class="input-group date" id="datepicker-container">
@@ -21,10 +21,10 @@
         </div>
     </div>
 
-    <div class="panel-heading">
-        <h3 class="panel-title">Last Night's Sleep</h3>
-        <div class="panel-body">
-            <div class="form-group {{errorClass 'sleep.hours'}}">
+    <div>
+        <h4 class="page-header">Last Night's Sleep</h4>
+        <div class="row">
+            <div class="form-group {{errorClass 'sleep.hours'}} col-xs-6">
                 <label for="sleep-hours" class="control-label">Hours</label>
 
                 <div class="controls">
@@ -33,7 +33,7 @@
                     <span class="help-block">{{errorMessage 'sleep.hours'}}</span>
                 </div>
             </div>
-            <div class="form-group {{errorClass 'sleep.quality'}}">
+            <div class="form-group {{errorClass 'sleep.quality'}} col-xs-6">
                 <label for="sleep-quality" class="control-label">Quality</label>
 
                 <div class="controls">
