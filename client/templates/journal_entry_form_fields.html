@@ -1,50 +1,66 @@
 <template name="journalEntryFormFields">
-    <div class="form-group {{errorClass 'entryDate'}} col-sm-3 col-sm-offset-9">
-        <label for="entry-datepicker" class="control-label">Date</label>
+    <div class="row">
+        <div class="form-group {{errorClass 'entryDate'}} col-sm-3 col-sm-offset-9">
+            <label for="entry-datepicker" class="control-label">Date</label>
 
-        <div class="input-group date" id="datepicker-container">
-            <input name="date" value="{{formattedDate}}" type="text"
-                   class="form-control" id="entry-datepicker"/>
-                <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-th"></i>
-                </span>
-        </div>
-        <span class="help-block">{{errorMessage 'entryDate'}}</span>
-    </div>
-    <div class="form-group {{errorClass 'caption'}}">
-        <label for="caption" class="control-label">Caption</label>
-
-        <div class="controls">
-            <input name="caption" id="caption" type="text" value="{{caption}}"
-                   class="form-control"/>
-            <span class="help-block">{{errorMessage 'caption'}}</span>
-        </div>
-    </div>
-
-    <div>
-        <h4 class="page-header">Last Night's Sleep</h4>
-        <div class="row">
-            <div class="form-group {{errorClass 'sleep.hours'}} col-xs-3">
-                <label for="sleep-hours" class="control-label">Hours</label>
-
-                <div class="controls">
-                    <input type="number" name="sleep-hours" id="sleep-hours" value="{{sleep.hours}}"
-                           class="form-control" min="0" max="72" step="0.25"/>
-                    <span class="help-block">{{errorMessage 'sleep.hours'}}</span>
-                </div>
+            <div class="input-group date" id="datepicker-container">
+                <input name="date" value="{{formattedDate}}" type="text"
+                       class="form-control" id="entry-datepicker"/>
+                  <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-th"></i>
+                  </span>
             </div>
-            <div class="form-group {{errorClass 'sleep.quality'}} col-xs-3">
-                <label for="sleep-quality" class="control-label">Quality</label>
+            <span class="help-block">{{errorMessage 'entryDate'}}</span>
+        </div>
+    </div>
 
-                <div class="controls">
-                    <select name="sleep-quality" id="sleep-quality" class="form-control">
-                        <option {{selected ''}} value=""></option>
-                        {{#each sleepQuality}}
-                            <option {{selected this}} value="{{this}}">{{this}}</option>
-                        {{/each}}
-                    </select>
-                    <span class="help-block">{{errorMessage 'sleep.quality'}}</span>
-                </div>
+    <div class="row">
+        <div class="form-group {{errorClass 'caption'}} col-xs-12">
+            <label for="caption" class="control-label">Caption</label>
+
+            <div class="controls">
+                <input name="caption" id="caption" type="text" value="{{caption}}"
+                       class="form-control"/>
+                <span class="help-block">{{errorMessage 'caption'}}</span>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="page-header">Last Night's Sleep</h4>
+
+    <div class="row">
+        <div class="form-group {{errorClass 'sleep.hours'}} col-xs-3">
+            <label for="sleep-hours" class="control-label">Hours</label>
+
+            <div class="controls">
+                <input type="number" name="sleep-hours" id="sleep-hours" value="{{sleep.hours}}"
+                       class="form-control" min="0" max="72" step="0.25"/>
+                <span class="help-block">{{errorMessage 'sleep.hours'}}</span>
+            </div>
+        </div>
+        <div class="form-group {{errorClass 'sleep.quality'}} col-xs-3">
+            <label for="sleep-quality" class="control-label">Quality</label>
+
+            <div class="controls">
+                <select name="sleep-quality" id="sleep-quality" class="form-control">
+                    <option {{selected ''}} value=""></option>
+                  {{#each sleepQuality}}
+                      <option {{selected this}} value="{{this}}">{{this}}</option>
+                  {{/each}}
+                </select>
+                <span class="help-block">{{errorMessage 'sleep.quality'}}</span>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="page-header">Breakfast</h4>
+
+    <div class="row">
+        <div class="form-group col-xs-12">
+            <label for="breakfast-food" class="control-label">Food</label>
+
+            <div class="controls">
+                <textarea name="breakfast-food" id="breakfast-food" rows="5" class="form-control"></textarea>
             </div>
         </div>
     </div>
