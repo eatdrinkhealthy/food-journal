@@ -3,7 +3,8 @@
 A simple journal application for practice with Meteor and Astronomy (a Meteor/MongoDB model layer).
 
 ### commit status (notes for an 'in progress' commit):
-- got shared form fields 'working', but validation error checking isn't working for edit
+- have placeholder for a timepicker (datetimepicker add on)
+  -consider/research switching rajit datepicker out for eonasdan datetimepicker
 
 ## Astronomy Technical Anamolies seen (do further research / testing)
 - slug, methodName wasn't firing. had to sort of hard wire this by adding a beforeSave event and calling generateSlug()
@@ -39,3 +40,5 @@ A simple journal application for practice with Meteor and Astronomy (a Meteor/Mo
     * What is the best way to do this? (see TODO in create / edit entry code)
     * Meteor.call(), without providing a callbac, SHOULD be synchronous. When trying that, I get an undefined result.
 - Moved common from fields for create and edit entry to a reusable template. The submit button for the form however is still in each edit and create form. Testing showed this to work, but may be a bad practice. smell?
+- Rajit datepicker is initialized using the .rendered callback, which is deprecated since Meteor 1.04
+  - but it doesn't behave properly when using onRendered, so keeping in on rendered for now

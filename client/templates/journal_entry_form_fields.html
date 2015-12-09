@@ -66,4 +66,16 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="form-group {{errorClass 'breakfast.time'}} col-xs-3">
+            <label for="breakfast-time" class="control-label">Time</label>
+
+            <div class="input-group date" id="datetimepicker-container">
+                <input name="breakfast-time" id="breakfast-time" type="text" class="form-control"/>
+                <span class="input-group-addon"> <i class="glyphicon glyphicon-time"></i> </span>
+            </div>
+            <span class="help-block">{{errorMessage 'breakfast.time'}}</span>
+        </div>
+    </div>
+
 </template>

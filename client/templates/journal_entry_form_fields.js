@@ -2,6 +2,8 @@ Template.journalEntryFormFields.onCreated(function () {
   Session.set('journalEntryFormFieldErrors', {});
 });
 
+// NOTE: datepicker behaves differently when using onRendered
+//   even though .rendered is deprecated since Meteor 1.04
 Template.journalEntryFormFields.rendered = function () {
   $('#entry-datepicker').datepicker({
     todayBtn: true,
@@ -61,7 +63,7 @@ Template.journalEntryFormFields.helpers({
 });
 
 Template.journalEntryFormFields.events({
-  'click .glyphicon': function (e) {
+  'click .glyphicon-th': function (e) {
     // NOTE, (per the docs) this functionality should work simply by adding
     // input-group-addon class to the span around the glyph, but wasn't working
     // ...so hard coded it.
