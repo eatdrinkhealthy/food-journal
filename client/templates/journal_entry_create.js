@@ -4,13 +4,14 @@ Template.journalEntry_create.events({
 
         var entry = new JournalEntry();
 
-
         // set all document fields here, except ownerId
         // set ownerId server side for greater security
 
         // set required fields
         entry.set({
-            entryDate: $('#entry-datepicker').datepicker('getDate'),
+            // Note, DateTimePicker returns a moment, which needs to be
+            // cloned and converted to a javascript date
+            entryDate: $('#entry-datepicker').data('DateTimePicker').date().clone().toDate(),
             caption: $(e.target).find('[name=caption]').val()
         });
 

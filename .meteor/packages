@@ -24,6 +24,6 @@ iron:router
 sacha:spin
 ian:accounts-ui-bootstrap-3
 accounts-password
-rajit:bootstrap3-datepicker
 audit-argument-checks
 jagi:astronomy-validators
+tsega:bootstrap3-datetimepicker

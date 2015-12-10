@@ -2,13 +2,10 @@
     <div class="row">
         <div class="form-group {{errorClass 'entryDate'}} col-sm-3 col-sm-offset-9">
             <label for="entry-datepicker" class="control-label">Date</label>
-
-            <div class="input-group date" id="datepicker-container">
-                <input name="date" value="{{formattedDate}}" type="text"
+            <div class="input-group date" id="entry-datepicker-container">
+                <input name="entry-date" value="{{formattedDate}}" type="text"
                        class="form-control" id="entry-datepicker"/>
-                  <span class="input-group-addon">
-                      <i class="glyphicon glyphicon-th"></i>
-                  </span>
+                <span class="input-group-addon"> <i class="glyphicon glyphicon-th"></i> </span>
             </div>
             <span class="help-block">{{errorMessage 'entryDate'}}</span>
         </div>
@@ -63,7 +60,7 @@
         <div class="form-group {{errorClass 'breakfast.time'}} col-xs-3">
             <label for="breakfast-time" class="control-label">Time</label>
 
-            <div class="input-group date" id="datetimepicker-container">
+            <div class="input-group date" id="breakfast-timepicker-container">
                 <input name="breakfast-time" id="breakfast-time" type="text" class="form-control"/>
                 <span class="input-group-addon"> <i class="glyphicon glyphicon-time"></i> </span>
             </div>

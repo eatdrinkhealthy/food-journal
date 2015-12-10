@@ -7,12 +7,16 @@ Template.journalEntry_edit.events({
         var entry = JournalEntries.findOne(currentEntryId);
 
         // Prevent the user from changing the entry date to another existing entry date
-        //      SIDENOTE: when comparing dates, the '+' prefix operator compares milliseconds
         // TODO: move this date check to astronomy validation
-        var newEntryDate = $('#entry-datepicker').datepicker('getDate');
+
+        // Note, DateTimePicker returns a moment, which needs to be
+        // cloned and converted to a javascript date
+        var newEntryDate = $('#entry-datepicker').data('DateTimePicker').date().clone().toDate();
+
+        // SIDENOTE: when comparing dates, the '+' prefix operator compares milliseconds
         if (+newEntryDate !== +entry.entryDate && JournalEntries.userJournalEntryExists(newEntryDate)) {
-            throwError('An entry for ' + dateDatePickerFormat(newEntryDate) + ' already exists.');
-            return $('#entry-datepicker').datepicker('setDate', entry.entryDate);
+            throwError('An entry for ' + datePickerFormat(newEntryDate) + ' already exists.');
+            return $('#entry-datepicker').data('DateTimePicker').date(entry.entryDate);
         }
 
         // set required fields

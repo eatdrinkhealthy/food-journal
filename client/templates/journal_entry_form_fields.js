@@ -2,35 +2,31 @@ Template.journalEntryFormFields.onCreated(function () {
   Session.set('journalEntryFormFieldErrors', {});
 });
 
-// NOTE: datepicker behaves differently when using onRendered
-//   even though .rendered is deprecated since Meteor 1.04
-Template.journalEntryFormFields.rendered = function () {
-  $('#entry-datepicker').datepicker({
-    todayBtn: true,
-    todayHighlight: true,
-    autoclose: true,
-    container: '#datepicker-container',
-    format: 'm/d/yy',
-    datesDisabled: JournalEntries.existingEntryDatesList()
+Template.journalEntryFormFields.onRendered(function () {
+  $('#entry-datepicker-container').datetimepicker({
+    format: 'M/D/YY',
+    showTodayButton: true,
+    disabledDates: JournalEntries.existingEntryDatesList()
   });
-};
+
+  $('#breakfast-timepicker-container').datetimepicker({
+    format: 'LT'
+  });
+});
 
 Template.journalEntryFormFields.helpers({
-  //formattedDate: function () {
-  //    return dateDatePickerFormat(this.entryDate);
-  //},
   formattedDate: function () {
     var dateStr;
 
     // if editing an existing entry with date, return formatted date
     if (this.entryDate) {
-      dateStr = dateDatePickerFormat(this.entryDate);
+      dateStr = datePickerFormat(this.entryDate);
     } else {
-      // if a new, and an entry doesn't exist for today's date,
+      // if creating a new entry, and an entry doesn't exist for today's date,
       // pre-fill date field with today's date (else empty)
       var today = new Date();
 
-      dateStr = JournalEntries.userJournalEntryExists(today) ? '' : dateDatePickerFormat(today);
+      dateStr = JournalEntries.userJournalEntryExists(today) ? '' : datePickerFormat(today);
     }
 
     return dateStr;
@@ -59,15 +55,5 @@ Template.journalEntryFormFields.helpers({
     }
 
     return selectItem === entrySleepQuality ? 'selected' : '';
-  }
-});
-
-Template.journalEntryFormFields.events({
-  'click .glyphicon-th': function (e) {
-    // NOTE, (per the docs) this functionality should work simply by adding
-    // input-group-addon class to the span around the glyph, but wasn't working
-    // ...so hard coded it.
-    e.preventDefault();
-    $('#entry-datepicker').datepicker('show');
   }
 });
