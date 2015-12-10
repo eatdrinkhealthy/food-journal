@@ -10,7 +10,7 @@ Template.journalEntryFormFields.onRendered(function () {
   });
 
   $('#breakfast-timepicker-container').datetimepicker({
-    format: 'LT'
+    format: 'h:mm A'
   });
 });
 
