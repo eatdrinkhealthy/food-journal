@@ -1,44 +1,53 @@
 Template.journalEntry_create.events({
-    'submit form': function (e) {
-        e.preventDefault();
+  'submit form': function (e) {
+    e.preventDefault();
 
-        var entry = new JournalEntry();
+    var entry = new JournalEntry();
 
-        // set all document fields here, except ownerId
-        // set ownerId server side for greater security
+    // set all document fields here, except ownerId
+    // set ownerId server side for greater security
 
-        // set required fields
-        entry.set({
-            // Note, DateTimePicker returns a moment, which needs to be
-            // cloned and converted to a javascript date
-            entryDate: $('#entry-datepicker').data('DateTimePicker').date().clone().toDate(),
-            caption: $(e.target).find('[name=caption]').val()
-        });
+    // Note, DateTimePicker returns a moment, which needs to be
+    // cloned and converted to a javascript date
+    //   if datetime input fields are not set, sets to null, else set to datetime   (uses '&&' short circuit)
+    var formEntryDate = $('#entry-datepicker-container').data('DateTimePicker').date();
+    formEntryDate = formEntryDate && formEntryDate.clone().toDate();
 
-        // set optional fields   (those with no user entered value, get null)
-        entry.set({
-            'sleep.hours': $(e.target).find('[name=sleep-hours]').val() || null,
-            'sleep.quality': $(e.target).find('[name=sleep-quality]').val() || null,
-            'breakfast.food': $(e.target).find('[name=breakfast-food]').val() || null
-        });
+    var formBreakfastTime = $('#breakfast-timepicker-container').data('DateTimePicker').date();
+    formBreakfastTime = formBreakfastTime && formBreakfastTime.clone().toDate();
 
-        if (entry.validateAll()) {
-            Meteor.call('journalEntryInsert', entry, function (error, result) {
-                if (error) {
-                    // if there are any validation errors, put those in the entry document/object
-                    entry.catchValidationException(error);
+    // set required fields
+    entry.set({
+      entryDate: formEntryDate,
+      caption: $(e.target).find('[name=caption]').val()
+    });
 
-                    return throwError('error from server: ' + JSON.stringify(error));
-                }
+    // set optional fields   (those with no user entered value, get null)
+    entry.set({
+      'sleep.hours': $(e.target).find('[name=sleep-hours]').val() || null,
+      'sleep.quality': $(e.target).find('[name=sleep-quality]').val() || null,
+      'breakfast.food': $(e.target).find('[name=breakfast-food]').val() || null,
+      // if breakfast time has a value, combine with date and save, else set to null
+      'breakfast.time': formBreakfastTime && combineTimeWithDate(formBreakfastTime, formEntryDate)
+    });
 
-                if (result.entryAlreadyExists) {
-                    throwError('A journal entry for this date already exists');
-                }
+    if (entry.validateAll()) {
+      Meteor.call('journalEntryInsert', entry, function (error, result) {
+        if (error) {
+          // if there are any validation errors, put those in the entry document/object
+          entry.catchValidationException(error);
 
-                Router.go('journalEntry_view', {_id: result._id});
-            });
-        } else {
-            return Session.set('journalEntryFormFieldErrors', entry.getValidationErrors());
+          return throwError('error from server: ' + JSON.stringify(error));
         }
+
+        if (result.entryAlreadyExists) {
+          throwError('A journal entry for this date already exists');
+        }
+
+        Router.go('journalEntry_view', {_id: result._id});
+      });
+    } else {
+      return Session.set('journalEntryFormFieldErrors', entry.getValidationErrors());
     }
+  }
 });

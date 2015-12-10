@@ -15,7 +15,7 @@ Template.journalEntryFormFields.onRendered(function () {
 });
 
 Template.journalEntryFormFields.helpers({
-  formattedDate: function () {
+  formattedEntryDate: function () {
     var dateStr;
 
     // if editing an existing entry with date, return formatted date
@@ -30,6 +30,10 @@ Template.journalEntryFormFields.helpers({
     }
 
     return dateStr;
+  },
+
+  formattedTime: function (time) {
+    return time ? timePickerFormat(time) : '';
   },
 
   errorClass: function (field) {
