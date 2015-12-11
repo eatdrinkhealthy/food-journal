@@ -48,16 +48,11 @@ Template.journalEntryFormFields.helpers({
     return JournalEntries.sleepQualityList;
   },
 
-  selected: function (selectItem) {
-    var data = Template.instance().data;
-    var entrySleepQuality = '';
+  selected: function (listItem, dataValue) {
 
-    // if editing, get sleep.quality if it's set
-    // if creating or edit value was not set, stick with default empty string
-    if (data.sleep !== undefined && data.sleep.quality) {
-      entrySleepQuality = data.sleep.quality;
-    }
+    // if the dataValue is not set (not truthy), use an empty string for comparison
+    var compareStr = dataValue || '';
 
-    return selectItem === entrySleepQuality ? 'selected' : '';
+    return listItem === compareStr ? 'selected' : '';
   }
 });

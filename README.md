@@ -3,8 +3,8 @@
 A simple journal application for practice with Meteor and Astronomy (a Meteor/MongoDB model layer).
 
 ### commit status (notes for an 'in progress' commit):
-- have placeholder for a timepicker (datetimepicker add on)
-  -consider/research switching rajit datepicker out for eonasdan datetimepicker
+- working on passing sleep.quality to helper 'selected' in each loop, losing scope
+one suggest work around: https://forums.meteor.com/t/pass-argument-to-helper-in-template-dynamic-call/3971
 
 ## Astronomy Technical Anamolies seen (do further research / testing)
 - slug, methodName wasn't firing. had to sort of hard wire this by adding a beforeSave event and calling generateSlug()
