@@ -36,12 +36,10 @@
 
             <select name="sleep-quality" id="sleep-quality" class="form-control">
                 <!--note, sleep.quality falls out of scope (undefined) within the each loop -->
-                {{#with fieldValue=sleep.quality}}
-                <option {{selected '' fieldValue}} value=""></option>
+                <option {{sleepQualitySelected ''}} value=""></option>
                 {{#each sleepQuality}}
-                    <option {{selected this fieldValue}} value="{{this}}">{{this}}</option>
+                    <option {{sleepQualitySelected this}} value="{{this}}">{{this}}</option>
                 {{/each}}
-                {{/with}}
             </select>
             <span class="help-block">{{errorMessage 'sleep.quality'}}</span>
         </div>

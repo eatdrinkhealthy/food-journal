@@ -48,10 +48,10 @@ Template.journalEntryFormFields.helpers({
     return JournalEntries.sleepQualityList;
   },
 
-  selected: function (listItem, dataValue) {
+  sleepQualitySelected: function (listItem) {
 
     // if the dataValue is not set (not truthy), use an empty string for comparison
-    var compareStr = dataValue || '';
+    var compareStr = Template.instance().data.sleep.quality || '';
 
     return listItem === compareStr ? 'selected' : '';
   }
