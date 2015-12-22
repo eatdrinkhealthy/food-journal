@@ -8,7 +8,7 @@ Template.journalEntry_edit.events({
 
     // Note, DateTimePicker returns a moment, which needs to be
     // cloned and converted to a javascript date
-    //   if datetime input fields are not set, sets to null, else set to datetime   (uses '&&' short circuit)
+    //   if datetime input fields are not set, set to null, else set to datetime   (uses '&&' short circuit)
     var formEntryDate = $('#entry-datepicker-container').data('DateTimePicker').date();
     formEntryDate = formEntryDate && formEntryDate.clone().toDate();
 
