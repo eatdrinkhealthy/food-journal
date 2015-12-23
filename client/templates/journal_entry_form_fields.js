@@ -59,6 +59,10 @@ Template.journalEntryFormFields.helpers({
     return listItem === compareStr ? 'selected' : '';
   },
 
+  mood: function () {
+    return JournalEntries.moodList;
+  },
+
   breakfastSatisfyingSelected: function (listItem) {
     // For optional boolean fields, we display them as yes / no / '' so
     // that we can show an empty string if field has not been set
@@ -86,6 +90,17 @@ Template.journalEntryFormFields.helpers({
     if (breakfastData) {
       // explicitly check for true or false boolean values (as opposed to just truthy/falsy)
       compareStr = convertBooleanToYesNoEmpty(breakfastData.snackAfter);
+    }
+
+    return listItem === compareStr ? 'selected' : '';
+  },
+
+  breakfastMoodSelected: function (listItem) {
+
+    // if the breakfast mood field is not set (undefined or null), use an empty string for comparison
+    var compareStr = '';
+    if (Template.instance().data.breakfast) {
+      compareStr = Template.instance().data.breakfast.mood || '';
     }
 
     return listItem === compareStr ? 'selected' : '';

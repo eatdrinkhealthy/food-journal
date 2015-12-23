@@ -58,7 +58,7 @@
     </div>
 
     <div class="row">
-        <div class="form-group {{errorClass 'breakfast.time'}} col-xs-3">
+        <div class="form-group {{errorClass 'breakfast.time'}} col-sm-3">
             <label for="breakfast-time" class="control-label">Time</label>
 
             <div class="input-group date" id="breakfast-timepicker-container">
@@ -68,10 +68,8 @@
             </div>
             <span class="help-block">{{errorMessage 'breakfast.time'}}</span>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-xs-3">
+        <div class="col-sm-3">
             <div class="form-group">
                 <label for="breakfast-satisfying" class="control-label">Satisfying</label>
 
@@ -82,7 +80,8 @@
                 </select>
             </div>
         </div>
-        <div class="col-xs-3">
+
+        <div class="col-sm-3">
             <div class="form-group">
                 <label for="breakfast-snack-after" class="control-label">Snack After</label>
 
@@ -95,4 +94,43 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="form-group {{errorClass 'breakfast.cravings'}} col-xs-12">
+            <label for="breakfast-cravings" class="control-label">Cravings</label>
+
+            <input name="breakfast-cravings" id="breakfast-cravings" type="text" value="{{breakfast.cravings}}"
+                   class="form-control"/>
+            <span class="help-block">{{errorMessage 'breakfast.cravings'}}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group {{errorClass 'breakfast.mood'}} col-sm-3">
+            <label for="breakfast-mood" class="control-label">Mood</label>
+
+            <select name="breakfast-mood" id="breakfast-mood" class="form-control">
+                <option {{breakfastMoodSelected ''}} value=""></option>
+                {{#each mood}}
+                  <option {{breakfastMoodSelected this}} value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <span class="help-block">{{errorMessage 'breakfast.mood'}}</span>
+        </div>
+
+        <div class="form-group {{errorClass 'breakfast.energyLevel'}} col-sm-3">
+            <label for="breakfast-energy-level" class="control-label">Energy Level</label>
+
+            <input type="number" name="breakfast-energy-level" id="breakfast-energy-level" value="{{breakfast.energyLevel}}"
+                   class="form-control" min="1" max="10"/>
+            <span class="help-block">{{errorMessage 'breakfast.energyLevel'}}</span>
+        </div>
+
+        <div class="form-group {{errorClass 'breakfast.clarityLevel'}} col-sm-3">
+            <label for="breakfast-clarity-level" class="control-label">Clarity Level</label>
+
+            <input type="number" name="breakfast-clarity-level" id="breakfast-clarity-level" value="{{breakfast.clarityLevel}}"
+                   class="form-control" min="1" max="10"/>
+            <span class="help-block">{{errorMessage 'breakfast.clarityLevel'}}</span>
+        </div>
+    </div>
 </template>
