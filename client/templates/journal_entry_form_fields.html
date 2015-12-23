@@ -72,7 +72,7 @@
 
     <div class="row">
         <div class="col-xs-3">
-            <div class="checkbox">
+            <div class="form-group">
                 <label for="breakfast-satisfying" class="control-label">Satisfying</label>
 
                 <select name="breakfast-satisfying" id="breakfast-satisfying" class="form-control">
@@ -83,11 +83,14 @@
             </div>
         </div>
         <div class="col-xs-3">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="{{breakfast.snackAfter}}"/>
-                    Snack After
-                </label>
+            <div class="form-group">
+                <label for="breakfast-snack-after" class="control-label">Snack After</label>
+
+                <select name="breakfast-snack-after" id="breakfast-snack-after" class="form-control">
+                    <option {{breakfastSnackAfterSelected ''}} value=""></option>
+                    <option {{breakfastSnackAfterSelected 'yes'}} value="yes">yes</option>
+                    <option {{breakfastSnackAfterSelected 'no'}} value="no">no</option>
+                </select>
             </div>
         </div>
     </div>

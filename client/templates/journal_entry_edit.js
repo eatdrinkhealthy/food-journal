@@ -36,7 +36,8 @@ Template.journalEntry_edit.events({
       'breakfast.food': $(e.target).find('[name=breakfast-food]').val() || null,
       // if breakfast time has a value, combine with date and save, else set to null
       'breakfast.time': formBreakfastTime && combineTimeWithDate(formBreakfastTime, formEntryDate),
-      'breakfast.satisfying': convertYesNoToBooleanOrNull($(e.target).find('[name=breakfast-satisfying]').val())
+      'breakfast.satisfying': convertYesNoToBooleanOrNull($(e.target).find('[name=breakfast-satisfying]').val()),
+      'breakfast.snackAfter': convertYesNoToBooleanOrNull($(e.target).find('[name=breakfast-snack-after]').val())
     });
 
     if (entry.validateAll()) {
