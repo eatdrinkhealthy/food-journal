@@ -36,29 +36,6 @@ Template.journalEntryFormFields.helpers({
     return time ? timePickerFormat(time) : '';
   },
 
-  errorClass: function (field) {
-    return !!Session.get('journalEntryFormFieldErrors')[field] ? 'has-error' : '';
-  },
-
-  errorMessage: function (field) {
-    return Session.get('journalEntryFormFieldErrors')[field];
-  },
-
-  sleepQuality: function () {
-    return JournalEntries.sleepQualityList;
-  },
-
-  sleepQualitySelected: function (listItem) {
-
-    // if the sleep quality field is not set (undefined or null), use an empty string for comparison
-    var compareStr = '';
-    if (Template.instance().data.sleep) {
-      compareStr = Template.instance().data.sleep.quality || '';
-    }
-
-    return listItem === compareStr ? 'selected' : '';
-  },
-
   mood: function () {
     return JournalEntries.moodList;
   },
