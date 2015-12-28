@@ -1,0 +1,23 @@
+<template name="notes">
+    <h4 class="page-header">Notes</h4>
+
+    <div class="row">
+        <div class="form-group {{errorClass 'overallFeeling'}} col-xs-12">
+            <label for="overall-feeling" class="control-label">Overall Feeling Today</label>
+
+            <input name="overall-feeling" id="overall-feeling" type="text" value=""
+                   class="form-control"/>
+            <span class="help-block">{{errorMessage 'overallFeeling'}}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group {{errorClass 'notes'}} col-xs-12">
+            <label for="notes" class="control-label">Notes</label>
+
+            <textarea name="notes" id="notes" rows="3"
+                      class="form-control"></textarea>
+            <span class="help-block">{{errorMessage 'notes'}}</span>
+        </div>
+    </div>
+</template>
