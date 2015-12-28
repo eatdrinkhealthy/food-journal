@@ -1,6 +1,6 @@
 <template name="breakfast">
     <div class="row">
-        <div class="form-group {{errorClass 'breakfast.food'}} col-xs-12">
+        <div class="form-group {{errorClass 'breakfast.food'}} col-sm-9">
             <label for="breakfast-food" class="control-label">Food</label>
 
             <textarea name="breakfast-food" id="breakfast-food" rows="3"
@@ -47,7 +47,7 @@
     </div>
 
     <div class="row">
-        <div class="form-group {{errorClass 'breakfast.cravings'}} col-xs-12">
+        <div class="form-group {{errorClass 'breakfast.cravings'}} col-sm-9">
             <label for="breakfast-cravings" class="control-label">Cravings</label>
 
             <input name="breakfast-cravings" id="breakfast-cravings" type="text" value="{{breakfast.cravings}}"

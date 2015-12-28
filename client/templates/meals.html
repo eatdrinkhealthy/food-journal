@@ -1,0 +1,28 @@
+<template name="meals">
+    <h4 class="page-header">Meals</h4>
+    <div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#breakfast" aria-controls="breakfast" role="tab" data-toggle="tab">Breakfast</a>
+            </li>
+            <li role="presentation">
+                <a href="#lunch" aria-controls="lunch" role="tab" data-toggle="tab">Lunch</a>
+            </li>
+            <li role="presentation">
+                <a href="#dinner" aria-controls="dinner" role="tab" data-toggle="tab">Dinner</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="breakfast" role="tabpanel">
+              {{> breakfast}}
+            </div>
+            <div class="tab-pane" id="lunch" role="tabpanel">
+                <h4>TODO lunch template</h4>
+            </div>
+            <div class="tab-pane" id="dinner" role="tabpanel">
+                <h4>TODO dinner template</h4>
+            </div>
+        </div>
+    </div>
+</template>
