@@ -1,0 +1,90 @@
+<template name="lunch">
+    <div class="row">
+        <div class="form-group {{errorClass 'lunch.food'}} col-xs-12">
+            <label for="lunch-food" class="control-label">Food</label>
+
+            <textarea name="lunch-food" id="lunch-food" rows="3"
+                      class="form-control">{{lunch.food}}</textarea>
+            <span class="help-block">{{errorMessage 'lunch.food'}}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group {{errorClass 'lunch.time'}} col-sm-3">
+            <label for="lunch-time" class="control-label">Time</label>
+
+            <div class="input-group date" id="lunch-timepicker-container">
+                <input name="lunch-time" id="lunch-time" value="{{formattedTime lunch.time}}" type="text"
+                       class="form-control"/>
+                <span class="input-group-addon"> <i class="glyphicon glyphicon-time"></i> </span>
+            </div>
+            <span class="help-block">{{errorMessage 'lunch.time'}}</span>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="lunch-satisfying" class="control-label">Satisfying</label>
+
+                <select name="lunch-satisfying" id="lunch-satisfying" class="form-control">
+                    <option {{lunchSatisfyingSelected ''}} value=""></option>
+                    <option {{lunchSatisfyingSelected 'yes'}} value="yes">yes</option>
+                    <option {{lunchSatisfyingSelected 'no'}} value="no">no</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="lunch-snack-after" class="control-label">Snack After</label>
+
+                <select name="lunch-snack-after" id="lunch-snack-after" class="form-control">
+                    <option {{lunchSnackAfterSelected ''}} value=""></option>
+                    <option {{lunchSnackAfterSelected 'yes'}} value="yes">yes</option>
+                    <option {{lunchSnackAfterSelected 'no'}} value="no">no</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group {{errorClass 'lunch.cravings'}} col-xs-12">
+            <label for="lunch-cravings" class="control-label">Cravings</label>
+
+            <input name="lunch-cravings" id="lunch-cravings" type="text" value="{{lunch.cravings}}"
+                   class="form-control"/>
+            <span class="help-block">{{errorMessage 'lunch.cravings'}}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group {{errorClass 'lunch.mood'}} col-sm-3">
+            <label for="lunch-mood" class="control-label">Mood</label>
+
+            <select name="lunch-mood" id="lunch-mood" class="form-control">
+                <option {{lunchMoodSelected ''}} value=""></option>
+              {{#each mood}}
+                  <option {{lunchMoodSelected this}} value="{{this}}">{{this}}</option>
+              {{/each}}
+            </select>
+            <span class="help-block">{{errorMessage 'lunch.mood'}}</span>
+        </div>
+
+        <div class="form-group {{errorClass 'lunch.energyLevel'}} col-sm-3">
+            <label for="lunch-energy-level" class="control-label">Energy Level</label>
+
+            <input type="number" name="lunch-energy-level" id="lunch-energy-level"
+                   value="{{lunch.energyLevel}}"
+                   class="form-control" min="1" max="10"/>
+            <span class="help-block">{{errorMessage 'lunch.energyLevel'}}</span>
+        </div>
+
+        <div class="form-group {{errorClass 'lunch.clarityLevel'}} col-sm-3">
+            <label for="lunch-clarity-level" class="control-label">Clarity Level</label>
+
+            <input type="number" name="lunch-clarity-level" id="lunch-clarity-level"
+                   value="{{lunch.clarityLevel}}"
+                   class="form-control" min="1" max="10"/>
+            <span class="help-block">{{errorMessage 'lunch.clarityLevel'}}</span>
+        </div>
+    </div>
+</template>
