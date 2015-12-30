@@ -13,10 +13,7 @@ Template.journalEntry_create.events({
     var formEntryDate = $('#entry-datepicker-container').data('DateTimePicker').date();
     formEntryDate = formEntryDate && formEntryDate.clone().toDate();
 
-    var formBreakfastTime = $('#breakfast-timepicker-container').data('DateTimePicker').date();
-    formBreakfastTime = formBreakfastTime && formBreakfastTime.clone().toDate();
-
-    setEntryFieldValues($(e.target), entry, formEntryDate, formBreakfastTime);
+    setEntryFieldValues($(e.target), entry, formEntryDate);
 
     if (entry.validateAll()) {
       Meteor.call('journalEntryInsert', entry, function (error, result) {

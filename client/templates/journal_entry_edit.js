@@ -12,10 +12,8 @@ Template.journalEntry_edit.events({
     var formEntryDate = $('#entry-datepicker-container').data('DateTimePicker').date();
     formEntryDate = formEntryDate && formEntryDate.clone().toDate();
 
-    var formBreakfastTime = $('#breakfast-timepicker-container').data('DateTimePicker').date();
-    formBreakfastTime = formBreakfastTime && formBreakfastTime.clone().toDate();
-
-    // Prevent the user from changing the entry date to another existing entry date
+    // When editing an existing entry, prevent the user from changing the entry date
+    // to another existing entry date
     // TODO: move this date check to astronomy validation
     // SIDENOTE: when comparing dates, the '+' prefix operator compares milliseconds
     if (+formEntryDate !== +entry.entryDate && JournalEntries.userJournalEntryExists(formEntryDate)) {
@@ -23,7 +21,7 @@ Template.journalEntry_edit.events({
       return $('#entry-datepicker-container').data('DateTimePicker').date(entry.entryDate);
     }
 
-    setEntryFieldValues($(e.target), entry, formEntryDate, formBreakfastTime);
+    setEntryFieldValues($(e.target), entry, formEntryDate);
 
     if (entry.validateAll()) {
       entry.save(function (error) {
