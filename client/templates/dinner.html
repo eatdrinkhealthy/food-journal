@@ -1,0 +1,90 @@
+<template name="dinner">
+    <div class="row">
+        <div class="form-group {{errorClass 'dinner.food'}} col-xs-12">
+            <label for="dinner-food" class="control-label">Food</label>
+
+            <textarea name="dinner-food" id="dinner-food" rows="3"
+                      class="form-control">{{dinner.food}}</textarea>
+            <span class="help-block">{{errorMessage 'dinner.food'}}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group {{errorClass 'dinner.time'}} col-sm-3">
+            <label for="dinner-time" class="control-label">Time</label>
+
+            <div class="input-group date" id="dinner-timepicker-container">
+                <input name="dinner-time" id="dinner-time" value="{{formattedTime dinner.time}}" type="text"
+                       class="form-control"/>
+                <span class="input-group-addon"> <i class="glyphicon glyphicon-time"></i> </span>
+            </div>
+            <span class="help-block">{{errorMessage 'dinner.time'}}</span>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="dinner-satisfying" class="control-label">Satisfying</label>
+
+                <select name="dinner-satisfying" id="dinner-satisfying" class="form-control">
+                    <option {{dinnerSatisfyingSelected ''}} value=""></option>
+                    <option {{dinnerSatisfyingSelected 'yes'}} value="yes">yes</option>
+                    <option {{dinnerSatisfyingSelected 'no'}} value="no">no</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="dinner-snack-after" class="control-label">Snack After</label>
+
+                <select name="dinner-snack-after" id="dinner-snack-after" class="form-control">
+                    <option {{dinnerSnackAfterSelected ''}} value=""></option>
+                    <option {{dinnerSnackAfterSelected 'yes'}} value="yes">yes</option>
+                    <option {{dinnerSnackAfterSelected 'no'}} value="no">no</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group {{errorClass 'dinner.cravings'}} col-xs-12">
+            <label for="dinner-cravings" class="control-label">Cravings</label>
+
+            <input name="dinner-cravings" id="dinner-cravings" type="text" value="{{dinner.cravings}}"
+                   class="form-control"/>
+            <span class="help-block">{{errorMessage 'dinner.cravings'}}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group {{errorClass 'dinner.mood'}} col-sm-3">
+            <label for="dinner-mood" class="control-label">Mood</label>
+
+            <select name="dinner-mood" id="dinner-mood" class="form-control">
+                <option {{dinnerMoodSelected ''}} value=""></option>
+              {{#each mood}}
+                  <option {{dinnerMoodSelected this}} value="{{this}}">{{this}}</option>
+              {{/each}}
+            </select>
+            <span class="help-block">{{errorMessage 'dinner.mood'}}</span>
+        </div>
+
+        <div class="form-group {{errorClass 'dinner.energyLevel'}} col-sm-3">
+            <label for="dinner-energy-level" class="control-label">Energy Level</label>
+
+            <input type="number" name="dinner-energy-level" id="dinner-energy-level"
+                   value="{{dinner.energyLevel}}"
+                   class="form-control" min="1" max="10"/>
+            <span class="help-block">{{errorMessage 'dinner.energyLevel'}}</span>
+        </div>
+
+        <div class="form-group {{errorClass 'dinner.clarityLevel'}} col-sm-3">
+            <label for="dinner-clarity-level" class="control-label">Clarity Level</label>
+
+            <input type="number" name="dinner-clarity-level" id="dinner-clarity-level"
+                   value="{{dinner.clarityLevel}}"
+                   class="form-control" min="1" max="10"/>
+            <span class="help-block">{{errorMessage 'dinner.clarityLevel'}}</span>
+        </div>
+    </div>
+</template>
