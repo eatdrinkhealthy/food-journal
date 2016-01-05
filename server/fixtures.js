@@ -7,7 +7,12 @@ if (JournalEntries.find().count() === 0) {
         password: 'asdfasdf'
     });
 
-    var joeUserId = Accounts.createUser({
+  var samiUserId = Accounts.createUser({
+    email: 'sami@test.com',
+    password: 'asdfasdf'
+  });
+
+  var joeUserId = Accounts.createUser({
         email: 'joe@test.com',
         password: 'asdfasdf'
     });
@@ -20,17 +25,17 @@ if (JournalEntries.find().count() === 0) {
 
     var je2 = new JournalEntry();
     je2.set({
-        'ownerId': smarshUserId,
-        'entryDate': new Date(2015, 8, 21),
-        'caption': 'not a very good day.'
+        'ownerId': samiUserId,
+        'entryDate': new Date(2015, 11, 21),
+        'caption': 'First day of logging.'
     });
     je2.set({
         'sleep.hours': 6,
         'sleep.quality': JournalEntries.sleepQualityList[3]
     });
     je2.set({
-        'breakfast.food': 'bacon, eggs',
-        'breakfast.time': new Date(2015, 8, 21, 7, 30),
+        'breakfast.food': 'toast, eggs',
+        'breakfast.time': new Date(2015, 11, 21, 7, 30),
         'breakfast.satisfying': true,
         'breakfast.snackAfter': false,
         'breakfast.cravings': 'chocolate, wine',
